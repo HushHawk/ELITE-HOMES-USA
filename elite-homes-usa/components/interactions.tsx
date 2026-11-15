@@ -85,12 +85,6 @@ export function Hero({ settings }: { settings: SiteContent }) {
             <div className="hero-actions">
               <Link className="btn hero-primary" href="/get-offer?from=home">Get My Cash Offer <ArrowUpRight size={18}/></Link>
               <a className="btn hero-process" href="#process">How it works <ArrowDown size={15}/></a>
-              {selectedVideo.kind !== 'off' && (
-                <button className="btn hero-film-action" type="button" onClick={openFilm} aria-label="Watch Elite Homes USA film">
-                  <Play size={15}/>
-                  <span>View film</span>
-                </button>
-              )}
             </div>
           </div>
         </div>
