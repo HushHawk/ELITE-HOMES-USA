@@ -4,7 +4,8 @@ import { resolve } from 'node:path';
 import { Readable } from 'node:stream';
 import type { MediaDriver } from './media-context.ts';
 
-const folder = () => resolve(/* turbopackIgnore: true */ process.env.ELITE_MEDIA_PATH || '.data/media');
+const defaultFolder = process.env.VERCEL ? '/tmp/media' : '.data/media';
+const folder = () => resolve(/* turbopackIgnore: true */ process.env.ELITE_MEDIA_PATH || defaultFolder);
 const location = (id: string) => resolve(folder(), id);
 
 export const localMedia: MediaDriver = {
