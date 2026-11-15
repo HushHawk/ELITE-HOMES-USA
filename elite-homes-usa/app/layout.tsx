@@ -12,5 +12,24 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" data-scroll-behavior="smooth"><body>{children}</body></html>;
+  return (
+    <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const _sa = Element.prototype.setAttribute;
+                Element.prototype.setAttribute = function(k, v) {
+                  if (k && (k.startsWith('bis_') || k.startsWith('__processed_'))) return;
+                  return _sa.apply(this, arguments);
+                };
+              } catch(e) {}
+            `,
+          }}
+        />
+      </head>
+      <body suppressHydrationWarning>{children}</body>
+    </html>
+  );
 }
