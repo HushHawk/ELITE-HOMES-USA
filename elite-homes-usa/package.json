@@ -1,0 +1,45 @@
+{
+  "name": "elite-homes-usa",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "node --disable-warning=ExperimentalWarning --experimental-strip-types --test tests/*.test.ts",
+    "test:e2e": "playwright test",
+    "build:sites": "vinext build"
+  },
+  "dependencies": {
+    "lucide-react": "^1.73.0",
+    "next": "^16.4.6",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@cloudflare/vite-plugin": "^1.69.1",
+    "@cloudflare/workers-types": "^5.20261115.1",
+    "@playwright/test": "^1.65.1",
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "@vitejs/plugin-rsc": "^0.5.39",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.4.6",
+    "react-server-dom-webpack": "^19.3.1",
+    "sharp": "^0.35.5",
+    "typescript": "^6.0.3",
+    "vinext": "^1.4.5",
+    "vite": "^8.3.8",
+    "wrangler": "^4.162.0"
+  }
+}
