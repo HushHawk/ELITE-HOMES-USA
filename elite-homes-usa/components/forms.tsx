@@ -280,34 +280,35 @@ export function QuickCashOfferForm({ className }: { className?: string }) {
       <div className="quick-offer-head">
         <span className="quick-offer-badge">FAST & FAIR 24-HOUR CASH OFFERS</span>
         <h2>Need To Sell Your House? <em>Get A Cash Offer</em></h2>
-        <p>Enter your address to receive a fair, no-obligation home offer.</p>
+        <p className="quick-offer-sub">Enter your address to receive a fair, no-obligation home offer within 24 hours.</p>
+        <div className="quick-offer-benefits">
+          <div className="quick-offer-benefit-item">
+            <Check size={16} className="gold-icon" />
+            <span>Cash offer in 24 hours</span>
+          </div>
+          <div className="quick-offer-benefit-item">
+            <Check size={16} className="gold-icon" />
+            <span>Sell as-is — no repairs required</span>
+          </div>
+          <div className="quick-offer-benefit-item">
+            <Check size={16} className="gold-icon" />
+            <span>Zero commissions, fees, or closing costs</span>
+          </div>
+        </div>
       </div>
 
       <form className="quick-offer-form" onSubmit={submit}>
-        <div className="quick-offer-field wide">
-          <label htmlFor="quick-name">Name *</label>
-          <input
-            id="quick-name"
-            name="name"
-            type="text"
-            required
-            placeholder="Your full name"
-            value={values.name}
-            onChange={e => setValues(v => ({ ...v, name: e.target.value }))}
-          />
-        </div>
-
-        <div className="quick-offer-row">
+        <div className="quick-offer-grid">
           <div className="quick-offer-field">
-            <label htmlFor="quick-address">Address *</label>
+            <label htmlFor="quick-name">Name *</label>
             <input
-              id="quick-address"
-              name="address"
+              id="quick-name"
+              name="name"
               type="text"
               required
-              placeholder="Property street address"
-              value={values.address}
-              onChange={e => setValues(v => ({ ...v, address: e.target.value }))}
+              placeholder="Your full name"
+              value={values.name}
+              onChange={e => setValues(v => ({ ...v, name: e.target.value }))}
             />
           </div>
 
@@ -323,18 +324,31 @@ export function QuickCashOfferForm({ className }: { className?: string }) {
               onChange={e => setValues(v => ({ ...v, phone: e.target.value }))}
             />
           </div>
-        </div>
 
-        <div className="quick-offer-field wide">
-          <label htmlFor="quick-email">Email (Optional)</label>
-          <input
-            id="quick-email"
-            name="email"
-            type="email"
-            placeholder="you@example.com"
-            value={values.email}
-            onChange={e => setValues(v => ({ ...v, email: e.target.value }))}
-          />
+          <div className="quick-offer-field">
+            <label htmlFor="quick-address">Address *</label>
+            <input
+              id="quick-address"
+              name="address"
+              type="text"
+              required
+              placeholder="Property street address"
+              value={values.address}
+              onChange={e => setValues(v => ({ ...v, address: e.target.value }))}
+            />
+          </div>
+
+          <div className="quick-offer-field">
+            <label htmlFor="quick-email">Email (Optional)</label>
+            <input
+              id="quick-email"
+              name="email"
+              type="email"
+              placeholder="you@example.com"
+              value={values.email}
+              onChange={e => setValues(v => ({ ...v, email: e.target.value }))}
+            />
+          </div>
         </div>
 
         <label className="quick-offer-sms-consent">

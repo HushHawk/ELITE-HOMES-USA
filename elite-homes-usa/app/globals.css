@@ -3147,18 +3147,16 @@ p+p {
 }
 
 .quick-intake {
-  background: #251c12;
+  background: #17120c;
   color: var(--white);
-  padding: 24px 0 28px;
-  border-top: 1px solid #7b6848
+  padding: clamp(32px, 4.5vw, 60px) 0;
+  border-top: 1px solid rgba(216, 178, 118, 0.2);
+  border-bottom: 1px solid rgba(216, 178, 118, 0.15);
 }
 
 .quick-intake>.shell {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: clamp(20px, 4vw, 56px);
-  flex-wrap: wrap
+  display: block;
+  width: 100%;
 }
 
 .quick-intake>.shell>div:first-child {
@@ -7160,20 +7158,24 @@ p+p {
 }
 
 /* ==========================================================================
-   Quick Cash Offer Form (Wix Feature Restoration + Dark Luxury Elevation)
+   Quick Cash Offer Form (Horizontal Luxury Bar & Full Width Coverage)
    ========================================================================== */
 .quick-cash-offer-card {
   position: relative;
-  background: linear-gradient(180deg, rgba(28, 21, 13, 0.96) 0%, rgba(18, 14, 9, 0.98) 100%);
+  background: linear-gradient(135deg, rgba(28, 21, 13, 0.98) 0%, rgba(18, 14, 9, 0.98) 100%);
   border: 1px solid rgba(216, 178, 118, 0.35);
   border-radius: 16px;
-  padding: 32px 36px;
+  padding: clamp(32px, 4vw, 48px) clamp(28px, 4vw, 56px);
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(216, 178, 118, 0.12) inset;
   backdrop-filter: blur(12px);
   width: 100%;
-  max-width: 680px;
-  margin: 32px auto 0;
+  max-width: 100%;
+  margin: 0;
   box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+  gap: clamp(28px, 4vw, 56px);
+  align-items: center;
 }
 
 .quick-cash-offer-card *,
@@ -7183,13 +7185,16 @@ p+p {
 }
 
 .quick-offer-head {
-  text-align: center;
-  margin-bottom: 24px;
+  text-align: left;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .quick-offer-badge {
   font-size: 11px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: #d8b276;
   font-weight: 700;
   text-transform: uppercase;
@@ -7199,9 +7204,9 @@ p+p {
 }
 
 .quick-offer-head h2 {
-  font: 600 clamp(20px, 4.5vw, 32px)/1.2 var(--serif);
+  font: 600 clamp(24px, 3.2vw, 38px)/1.2 var(--serif);
   color: #f7ede0;
-  margin: 8px 0;
+  margin: 0;
   letter-spacing: -0.01em;
   word-break: break-word;
 }
@@ -7215,9 +7220,32 @@ p+p {
 
 .quick-offer-sub {
   color: #bfb2a3;
-  font-size: 14.5px;
+  font-size: 15px;
   margin: 0;
-  line-height: 1.5;
+  line-height: 1.55;
+  max-width: 44ch;
+}
+
+.quick-offer-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(216, 178, 118, 0.15);
+}
+
+.quick-offer-benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #e4d7c5;
+  font-size: 13.5px;
+}
+
+.quick-offer-benefit-item .gold-icon {
+  color: #d8b276;
+  flex-shrink: 0;
 }
 
 .quick-offer-form {
@@ -7228,10 +7256,10 @@ p+p {
   box-sizing: border-box;
 }
 
-.quick-offer-row {
+.quick-offer-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
+  gap: 14px 16px;
   width: 100%;
 }
 
@@ -7244,7 +7272,7 @@ p+p {
 }
 
 .quick-offer-field label {
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 600;
   color: #d8b276;
   text-transform: uppercase;
@@ -7278,7 +7306,7 @@ p+p {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  margin-top: 4px;
+  margin-top: 2px;
   cursor: pointer;
 }
 
@@ -7292,8 +7320,8 @@ p+p {
 }
 
 .quick-offer-sms-consent span {
-  font-size: 11.5px;
-  line-height: 1.5;
+  font-size: 11px;
+  line-height: 1.45;
   color: #a49788;
 }
 
@@ -7315,12 +7343,35 @@ p+p {
   cursor: pointer;
   box-shadow: 0 8px 24px rgba(184, 143, 75, 0.35);
   transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
-  margin-top: 6px;
+  margin-top: 4px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .quick-offer-submit-btn:hover:not(:disabled) {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
   box-shadow: 0 12px 28px rgba(184, 143, 75, 0.45);
+}
+
+.quick-offer-success-card {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  background: linear-gradient(180deg, rgba(28, 21, 13, 0.96) 0%, rgba(18, 14, 9, 0.98) 100%);
+  border: 1px solid rgba(216, 178, 118, 0.35);
+  border-radius: 16px;
+  padding: 40px;
+  text-align: center;
+}
+
+@media (max-width: 960px) {
+  .quick-cash-offer-card {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
 }
 
 .quick-offer-submit-btn:disabled {
@@ -8147,6 +8198,7 @@ p+p {
 }
 
 @media (max-width: 600px) {
+  .quick-offer-grid,
   .quick-offer-row {
     grid-template-columns: 1fr;
   }
