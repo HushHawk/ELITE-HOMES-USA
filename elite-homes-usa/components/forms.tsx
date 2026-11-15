@@ -279,7 +279,7 @@ export function QuickCashOfferForm({ className }: { className?: string }) {
     <div className={'quick-cash-offer-card ' + (className || '')}>
       <div className="quick-offer-head">
         <span className="quick-offer-badge">FAST & FAIR 24-HOUR CASH OFFERS</span>
-        <h2>Need To Sell Your House? <em>Get A Cash Offer</em></h2>
+        <h2>Need To Sell Your House?<br className="quick-offer-title-br" /> <em>Get A Cash Offer</em></h2>
         <p className="quick-offer-sub">Enter your address to receive a fair, no-obligation home offer within 24 hours.</p>
         <div className="quick-offer-benefits">
           <div className="quick-offer-benefit-item">

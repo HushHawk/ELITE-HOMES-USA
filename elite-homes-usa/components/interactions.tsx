@@ -84,29 +84,15 @@ export function Hero({ settings }: { settings: SiteContent }) {
             </div>
             <div className="hero-actions">
               <Link className="btn hero-primary" href="/get-offer?from=home">Get My Cash Offer <ArrowUpRight size={18}/></Link>
-              <a className="hero-process" href="#process">How it works <ArrowDown size={15}/></a>
+              <a className="btn hero-process" href="#process">How it works <ArrowDown size={15}/></a>
+              {selectedVideo.kind !== 'off' && (
+                <button className="btn hero-film-action" type="button" onClick={openFilm} aria-label="Watch Elite Homes USA film">
+                  <Play size={15}/>
+                  <span>View film</span>
+                </button>
+              )}
             </div>
           </div>
-
-          <figcaption className="hero-caption">
-            <div className="hero-slide-index" aria-label={`Slide ${index + 1} of ${slides.length}`}>
-              <span>0{index + 1}</span>
-              <div aria-hidden="true"><i style={{width:(index + 1) / slides.length * 100 + '%'}}/></div>
-              <span>0{slides.length}</span>
-            </div>
-            <div className="hero-controls-wrap">
-              <div className="film-button-wrap">
-                {slide.video ? <button className="film-link" aria-label={playing ? 'Pause background film' : 'Play background film'} onClick={() => {
-                  if (video.current?.paused) video.current.play().catch(() => setPlaying(false)); else video.current?.pause();
-                }}>{playing ? <Pause size={15}/> : <Play size={15}/>}<span>{playing ? 'Pause film' : 'Play film'}</span></button>
-                : selectedVideo.kind !== 'off' && <button className="film-link" type="button" onClick={openFilm}><Play size={15}/><span>View film</span></button>}
-              </div>
-              <div className="hero-controls" aria-label="Carousel controls">
-                <button className="icon-btn" onClick={() => go(index - 1)} disabled={slides.length < 2} aria-label="Previous slide"><ArrowLeft size={20}/></button>
-                <button className="icon-btn" onClick={() => go(index + 1)} disabled={slides.length < 2} aria-label="Next slide"><ArrowRight size={20}/></button>
-              </div>
-            </div>
-          </figcaption>
         </div>
       </div>
     </figure>

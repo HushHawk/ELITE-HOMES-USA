@@ -2844,9 +2844,9 @@ p+p {
   z-index: 2;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-height: clamp(620px, 86vh, 880px);
-  padding: calc(var(--header) + clamp(36px, 6vw, 76px)) 0 clamp(24px, 3.5vw, 42px);
+  justify-content: flex-end;
+  min-height: clamp(560px, 78vh, 780px);
+  padding: calc(var(--header) + clamp(36px, 5.5vw, 76px)) 0 clamp(52px, 7vw, 92px);
   width: 100%;
 }
 
@@ -2966,6 +2966,32 @@ p+p {
   background: rgba(45, 34, 22, .9);
   border-color: #e3c584;
   color: #f3cf8c;
+  transform: translateY(-2px);
+}
+
+.hero-film-action {
+  display: inline-flex;
+  align-items: center;
+  min-height: 54px;
+  gap: 10px;
+  color: #f7ede0;
+  font-size: 13.5px;
+  font-weight: 700;
+  padding: 0 22px;
+  background: rgba(22, 17, 12, .55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(227, 197, 132, .35);
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .4);
+  transition: background-color .2s, border-color .2s, color .2s, transform .2s;
+}
+
+.hero-film-action:hover {
+  background: rgba(45, 34, 22, .9);
+  border-color: #e3c584;
+  color: #e3c584;
   transform: translateY(-2px);
 }
 
@@ -3205,6 +3231,11 @@ p+p {
   align-items: stretch
 }
 
+.service-editorial .heading-row h2 {
+  font-size: clamp(28px, 3.2vw, 42px);
+  line-height: 1.15;
+}
+
 .service-selector {
   border-top: 1px solid #aa9579
 }
@@ -3212,17 +3243,18 @@ p+p {
 .service-selector button {
   display: grid;
   grid-template-columns: auto 1fr auto;
-  gap: clamp(9px, 1.5vw, 24px);
+  gap: clamp(10px, 1.4vw, 20px);
   width: 100%;
-  min-height: 70px;
+  min-height: 54px;
   background: transparent;
   border: 0;
   border-bottom: 1px solid #aa9579;
   text-align: left;
   align-items: center;
-  padding: 11px 9px;
+  padding: 12px 14px;
   color: #2f251a;
-  font: 600 clamp(23px, 3vw, 44px)/1 var(--serif);
+  font: 600 clamp(16px, 1.55vw, 21px)/1.3 var(--serif);
+  letter-spacing: -0.01em;
   transition: background .2s, padding .2s
 }
 
@@ -3733,8 +3765,8 @@ p+p {
   }
 
   .service-selector button {
-    font-size: 29px;
-    min-height: 53px
+    font-size: 18px;
+    min-height: 48px
   }
 
   .review-carousel {
@@ -7165,7 +7197,7 @@ p+p {
   background: linear-gradient(135deg, rgba(28, 21, 13, 0.98) 0%, rgba(18, 14, 9, 0.98) 100%);
   border: 1px solid rgba(216, 178, 118, 0.35);
   border-radius: 16px;
-  padding: clamp(32px, 4vw, 48px) clamp(28px, 4vw, 56px);
+  padding: clamp(28px, 3.8vw, 44px) clamp(24px, 3.8vw, 52px);
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(216, 178, 118, 0.12) inset;
   backdrop-filter: blur(12px);
   width: 100%;
@@ -7173,8 +7205,8 @@ p+p {
   margin: 0;
   box-sizing: border-box;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
-  gap: clamp(28px, 4vw, 56px);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+  gap: clamp(24px, 3.5vw, 48px);
   align-items: center;
 }
 
@@ -7189,7 +7221,7 @@ p+p {
   margin-bottom: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .quick-offer-badge {
@@ -7204,11 +7236,12 @@ p+p {
 }
 
 .quick-offer-head h2 {
-  font: 600 clamp(24px, 3.2vw, 38px)/1.2 var(--serif);
+  font: 600 clamp(19px, 2.1vw, 27px)/1.25 var(--serif);
   color: #f7ede0;
   margin: 0;
   letter-spacing: -0.01em;
-  word-break: break-word;
+  word-break: normal;
+  max-width: 100%;
 }
 
 .quick-offer-head h2 span,
@@ -7216,6 +7249,7 @@ p+p {
   color: #d8b276;
   font-style: italic;
   font-weight: 400;
+  display: inline-block;
 }
 
 .quick-offer-sub {
@@ -7367,7 +7401,7 @@ p+p {
   text-align: center;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1060px) {
   .quick-cash-offer-card {
     grid-template-columns: 1fr;
     gap: 28px;
