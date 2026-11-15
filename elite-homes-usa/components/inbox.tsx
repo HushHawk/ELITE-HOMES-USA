@@ -31,7 +31,7 @@ export function SignIn() {
         secret: data.get('secret'),
         username: data.get('username'),
       });
-      router.refresh();
+      window.location.href = '/admin';
     } catch (e) { setError(e instanceof Error ? e.message : 'Unable to sign in.'); }
     finally { setBusy(false); }
   }

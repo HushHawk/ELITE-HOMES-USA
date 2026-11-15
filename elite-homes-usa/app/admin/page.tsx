@@ -1,28 +1,42 @@
 import type { Metadata } from 'next';
 import { cookies } from 'next/headers';
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
 import { Brand } from '@/components/chrome';
 import { SignIn } from '@/components/inbox';
 import { MarketAdmin } from '@/components/market-admin';
-import { adminEnabled, cookieName, validSession } from '@/lib/session';
+import { cookieName, validSession } from '@/lib/session';
 
-export const metadata: Metadata = { title: 'Owner Dashboard', robots: { index: false, follow: false } };
+export const metadata: Metadata = { title: 'Owner Dashboard | Elite Homes USA', robots: { index: false, follow: false } };
 
 export default async function AdminPage() {
   const authorized = validSession((await cookies()).get(cookieName)?.value);
   if (authorized) {
-    return <main className="admin-app-root">
-      <MarketAdmin />
-    </main>;
+    return (
+      <main className="admin-app-root">
+        <MarketAdmin />
+      </main>
+    );
   }
 
-  return <main className="admin admin-auth-screen">
-    <header className="admin-top"><div className="shell"><Brand/></div></header>
-    <div className="shell">
-      <div className="admin-auth-view">
-        <h1>Owner dashboard</h1>
-        <p className="preview-notice">Secure Owner & Administrator Access</p>
-        {adminEnabled() ? <SignIn/> : <p>Configure an owner access secret to enable dashboard sign-in.</p>}
+  return (
+    <main className="admin-auth-screen">
+      <div className="admin-auth-ambient-glow" aria-hidden="true" />
+      <header className="admin-auth-header">
+        <div className="shell admin-auth-header-inner">
+          <Brand />
+          <Link href="/" className="admin-auth-back-link">
+            <ArrowLeft size={15} />
+            <span>Back to website</span>
+          </Link>
+        </div>
+      </header>
+
+      <div className="admin-auth-container">
+        <div className="shell">
+          <SignIn />
+        </div>
       </div>
-    </div>
-  </main>;
+    </main>
+  );
 }
