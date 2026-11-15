@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect, useState, type FormEvent } from 'react';
-import { Check, Copy, Download, Inbox, KeyRound, LogOut, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Check, Copy, Download, Inbox, KeyRound, LogOut, ShieldCheck } from 'lucide-react';
 import { channels, statuses, type Channel } from '@/lib/schema';
 import type { Activity, InboxRow } from '@/lib/store';
 
@@ -87,7 +87,8 @@ export function SignIn() {
     {error && <p role="alert" className="form-error">{error}</p>}
 
     <button className="btn gold admin-submit-btn" disabled={busy}>
-      {busy ? 'Signing in…' : 'Sign In'}
+      <span>{busy ? 'Signing in…' : 'Sign In to Dashboard'}</span>
+      <ArrowRight size={16}/>
     </button>
 
     <div className="admin-credentials-card">

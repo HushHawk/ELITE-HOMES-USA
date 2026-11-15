@@ -2006,29 +2006,202 @@ p+p {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(32px, 6vw, 64px) 16px;
+  padding: clamp(36px, 5vw, 72px) 16px;
   position: relative;
   z-index: 2;
   width: 100%;
 }
 
-.admin-auth-container .shell {
+.admin-auth-shell {
   display: flex;
   justify-content: center;
   width: 100%;
+  max-width: 1140px;
 }
 
-/* Auth Card */
-.admin-signin {
+/* Horizontal Luxury Portal Card */
+.admin-horizontal-card {
   width: 100%;
-  max-width: 480px;
-  background: linear-gradient(145deg, rgba(30, 22, 14, 0.98) 0%, rgba(18, 13, 8, 0.98) 100%);
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  background: #140d07;
   border: 1px solid rgba(216, 178, 118, 0.38);
-  border-radius: 18px;
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(216, 178, 118, 0.12) inset;
-  padding: clamp(28px, 4vw, 42px);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  border-radius: 22px;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(216, 178, 118, 0.12) inset;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Left Brand Panel */
+.admin-brand-panel {
+  padding: clamp(32px, 4.5vw, 56px);
+  background: linear-gradient(155deg, rgba(34, 24, 15, 0.98) 0%, rgba(18, 13, 8, 0.98) 100%);
+  border-right: 1px solid rgba(216, 178, 118, 0.22);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-brand-panel-glow {
+  position: absolute;
+  top: -80px;
+  left: -80px;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(216, 178, 118, 0.2) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.admin-brand-crest {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.admin-brand-crest .mark {
+  color: #e3c584;
+  filter: drop-shadow(0 2px 12px rgba(227, 197, 132, 0.45));
+  flex-shrink: 0;
+}
+
+.admin-brand-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.admin-brand-company {
+  font: 800 16px/1.2 var(--sans);
+  color: #f7ede0;
+  letter-spacing: 0.16em;
+}
+
+.admin-brand-portal-label {
+  font-size: 11px;
+  color: #d8b276;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+}
+
+.admin-brand-body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-brand-kicker {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 750;
+  color: #d8b276;
+}
+
+.admin-brand-body h1 {
+  font: 600 clamp(26px, 3.2vw, 36px)/1.2 var(--serif);
+  color: #f7ede0;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.admin-brand-body p {
+  font-size: 14.5px;
+  color: #b5a898;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.admin-brand-features {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px 0;
+  border-top: 1px solid rgba(216, 178, 118, 0.15);
+  border-bottom: 1px solid rgba(216, 178, 118, 0.15);
+}
+
+.admin-feat-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.admin-feat-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: rgba(216, 178, 118, 0.12);
+  border: 1px solid rgba(216, 178, 118, 0.25);
+  color: #e3c584;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.admin-feat-item div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.admin-feat-item strong {
+  font-size: 13px;
+  font-weight: 700;
+  color: #f6e8cd;
+}
+
+.admin-feat-item span {
+  font-size: 12px;
+  color: #9f9181;
+  line-height: 1.4;
+}
+
+.admin-brand-footer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11.5px;
+  color: #8c7e6f;
+}
+
+.admin-confidential {
+  color: #bfa782;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* Right Form Panel */
+.admin-form-panel {
+  padding: clamp(32px, 4.5vw, 56px);
+  background: rgba(14, 10, 6, 0.96);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.admin-form-panel .admin-signin {
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 .admin-signin-badge {
@@ -2044,6 +2217,7 @@ p+p {
   border: 1px solid rgba(216, 178, 118, 0.25);
   padding: 5px 12px;
   border-radius: 999px;
+  align-self: flex-start;
 }
 
 .admin-signin-badge svg {
@@ -2051,23 +2225,23 @@ p+p {
 }
 
 .admin-signin h2 {
-  font: 600 clamp(26px, 3.2vw, 34px)/1.2 var(--serif);
+  font: 600 clamp(24px, 3vw, 32px)/1.2 var(--serif);
   color: #f7ede0;
-  margin: 0 0 8px;
+  margin: 0 0 6px;
 }
 
 .admin-signin-desc {
-  font-size: 14px;
+  font-size: 13.5px;
   color: #b5a898;
-  margin: 0 0 24px;
+  margin: 0 0 20px;
   line-height: 1.5;
 }
 
 .admin-signin .field {
   display: flex;
   flex-direction: column;
-  gap: 7px;
-  margin-bottom: 16px;
+  gap: 6px;
+  margin-bottom: 14px;
   width: 100%;
 }
 
@@ -2083,9 +2257,9 @@ p+p {
   background: rgba(10, 7, 4, 0.75);
   border: 1px solid rgba(216, 178, 118, 0.28);
   border-radius: 8px;
-  padding: 13px 15px;
+  padding: 12px 14px;
   color: #f7ede0;
-  font-size: 14.5px;
+  font-size: 14px;
   width: 100%;
   box-sizing: border-box;
   transition: all 0.2s ease;
@@ -2104,7 +2278,7 @@ p+p {
 
 .admin-submit-btn {
   width: 100%;
-  min-height: 50px;
+  min-height: 48px;
   background: linear-gradient(135deg, #d8b276 0%, #b88f4b 100%);
   color: #0f0c08;
   font-weight: 750;
@@ -2115,7 +2289,11 @@ p+p {
   cursor: pointer;
   box-shadow: 0 8px 24px rgba(184, 143, 75, 0.35);
   transition: all 0.2s ease;
-  margin-top: 10px;
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .admin-submit-btn:hover:not(:disabled) {
@@ -2125,9 +2303,9 @@ p+p {
 }
 
 .admin-credentials-card {
-  margin-top: 24px;
-  padding: 16px 18px;
-  background: rgba(14, 10, 6, 0.85);
+  margin-top: 20px;
+  padding: 14px 16px;
+  background: rgba(18, 13, 8, 0.9);
   border: 1px solid rgba(216, 178, 118, 0.25);
   border-radius: 12px;
 }
@@ -2137,7 +2315,7 @@ p+p {
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .admin-cred-title {
@@ -2168,27 +2346,27 @@ p+p {
 
 .admin-cred-body {
   display: grid;
-  gap: 9px;
-  font-size: 13px;
+  gap: 8px;
+  font-size: 12.5px;
 }
 
 .admin-cred-row {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
 .admin-cred-row small {
   font-weight: 700;
   color: #9d8e7e;
-  width: 72px;
+  width: 68px;
 }
 
 .admin-cred-row code {
-  font-size: 12.5px;
-  background: rgba(24, 18, 12, 0.9);
-  padding: 4px 8px;
+  font-size: 12px;
+  background: rgba(26, 19, 12, 0.95);
+  padding: 3px 7px;
   border: 1px solid rgba(216, 178, 118, 0.25);
   border-radius: 5px;
   font-weight: 700;
@@ -2198,7 +2376,7 @@ p+p {
 .admin-copy-btn {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   background: transparent;
   border: 1px solid rgba(216, 178, 118, 0.3);
   color: #d8b276;
@@ -2216,9 +2394,9 @@ p+p {
 }
 
 .admin-cred-hint {
-  font-size: 11.5px;
+  font-size: 11px;
   color: #8c7e6f;
-  margin: 10px 0 0;
+  margin: 8px 0 0;
   line-height: 1.45;
 }
 
@@ -2227,6 +2405,16 @@ p+p {
   background: rgba(216, 178, 118, 0.1);
   padding: 2px 4px;
   border-radius: 3px;
+}
+
+@media (max-width: 920px) {
+  .admin-horizontal-card {
+    grid-template-columns: 1fr;
+  }
+  .admin-brand-panel {
+    border-right: none;
+    border-bottom: 1px solid rgba(216, 178, 118, 0.22);
+  }
 }
 
 .admin-copy-btn {
