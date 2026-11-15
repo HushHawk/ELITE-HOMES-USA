@@ -57,25 +57,24 @@ export function Hero({ settings }: { settings: SiteContent }) {
     return () => preference.removeEventListener('change', syncMotion);
   }, [slide.video]);
 
-  return <section className="hero hero-editorial" aria-roledescription="carousel" aria-label="Cash home buying"
+  return <section className="hero hero-editorial hero-fullbleed" aria-roledescription="carousel" aria-label="Cash home buying"
     onKeyDown={e => { if (e.target instanceof HTMLButtonElement && ['ArrowLeft', 'ArrowRight'].includes(e.key)) { e.preventDefault(); go(index + (e.key === 'ArrowRight' ? 1 : -1)); } }}>
-    <div className="shell">
-      <figure className="hero-figure hero-card"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-        onTouchStart={e => { setIsPaused(true); touch.current = e.touches[0].clientX; }}
-        onTouchEnd={e => { const dx = e.changedTouches[0].clientX - touch.current; if (Math.abs(dx) > 65) go(index + (dx < 0 ? 1 : -1)); setTimeout(() => setIsPaused(false), 3000); }}>
-        <div className="hero-media" key={slide.image}>
-          {!slide.isManaged && index === 0 ? <picture>
-            <source media="(max-width: 520px)" srcSet="/images/dusk-mobile.webp"/>
-            <img src="/images/dusk.webp" alt="" fetchPriority="high" width="2160" height="1440" style={{ objectPosition: slide.position }}/>
-          </picture> : <Image src={slide.isManaged ? '/api/media/' + slide.image : '/images/' + slide.image + '.webp'} alt={slide.alt} fill sizes="100vw" preload style={{ objectPosition: slide.position }}/>}
-          {slide.video && <video ref={video} src="/videos/home-film.mp4" poster="/images/film-poster.webp" muted playsInline loop preload="none" aria-hidden="true" onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}/>}
-        </div>
-        <div className="hero-scrim" aria-hidden="true"/>
-        <div className="photo-keyline" aria-hidden="true"/>
-        {!slide.isManaged && <div className="photo-note">Illustrative architecture</div>}
+    <figure className="hero-figure hero-fullbleed-figure"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={e => { setIsPaused(true); touch.current = e.touches[0].clientX; }}
+      onTouchEnd={e => { const dx = e.changedTouches[0].clientX - touch.current; if (Math.abs(dx) > 65) go(index + (dx < 0 ? 1 : -1)); setTimeout(() => setIsPaused(false), 3000); }}>
+      <div className="hero-media" key={slide.image}>
+        {!slide.isManaged && index === 0 ? <picture>
+          <source media="(max-width: 520px)" srcSet="/images/dusk-mobile.webp"/>
+          <img src="/images/dusk.webp" alt="" fetchPriority="high" width="2160" height="1440" style={{ objectPosition: slide.position }}/>
+        </picture> : <Image src={slide.isManaged ? '/api/media/' + slide.image : '/images/' + slide.image + '.webp'} alt={slide.alt} fill sizes="100vw" preload style={{ objectPosition: slide.position }}/>}
+        {slide.video && <video ref={video} src="/videos/home-film.mp4" poster="/images/film-poster.webp" muted playsInline loop preload="none" aria-hidden="true" onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}/>}
+      </div>
+      <div className="hero-scrim" aria-hidden="true"/>
+      {!slide.isManaged && <div className="photo-note">Illustrative architecture</div>}
 
+      <div className="shell hero-content-shell">
         <div className="hero-card-body">
           <div className="hero-content">
             <div className="hero-coordinate"><MapPin size={13}/> Jacksonville, Florida <i/></div>
@@ -109,8 +108,8 @@ export function Hero({ settings }: { settings: SiteContent }) {
             </div>
           </figcaption>
         </div>
-      </figure>
-    </div>
+      </div>
+    </figure>
     {mediaFilm && <dialog ref={film} className="hero-film-dialog" aria-label="Elite Homes USA film" onClose={() => setFilmOpen(false)}>
       <div><button type="button" className="icon-btn" autoFocus aria-label="Close film" onClick={() => film.current?.close()}><X size={20}/></button>
       {filmOpen && (mediaFilm.embed
