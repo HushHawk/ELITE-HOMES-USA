@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ArrowRight, Menu, Phone, X } from 'lucide-react';
+import { Menu, Phone, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { business, navigation } from '@/lib/content';
 
@@ -34,14 +34,14 @@ export function Header() {
       <nav className="desktop-nav" aria-label="Main navigation">{navigation.map(([label, url]) => <Link aria-current={path === url ? 'page' : undefined} href={url} key={url}>{label}</Link>)}</nav>
       <div className="head-actions">
         <a href={'tel:+1' + business.phone.replaceAll('-', '')} className="header-phone"><Phone size={14}/> {business.phone}</a>
-        <Link className="btn gold compact" href="/get-offer">Get My Offer <ArrowRight size={15}/></Link>
+        <Link className="btn gold compact" href="/get-offer">Say Hello</Link>
         <button className="icon-btn menu-toggle" aria-label="Open navigation" onClick={() => menu.current?.showModal()}><Menu size={23}/></button>
       </div>
     </div>
     <dialog ref={menu} className="mobile-menu" aria-label="Main navigation">
       <div className="menu-head"><Brand/><button autoFocus className="icon-btn" aria-label="Close navigation" onClick={() => menu.current?.close()}><X/></button></div>
-      <nav>{navigation.map(([label, url]) => <Link aria-current={path === url ? 'page' : undefined} href={url} key={url} onClick={() => menu.current?.close()}>{label}<ArrowRight size={21}/></Link>)}</nav>
-      <Link className="btn gold" href="/get-offer" onClick={() => menu.current?.close()}>Get My Cash Offer <ArrowRight size={17}/></Link>
+      <nav>{navigation.map(([label, url]) => <Link aria-current={path === url ? 'page' : undefined} href={url} key={url} onClick={() => menu.current?.close()}>{label}</Link>)}</nav>
+      <Link className="btn gold" href="/get-offer" onClick={() => menu.current?.close()}>Start a Conversation</Link>
     </dialog>
   </header>;
 }

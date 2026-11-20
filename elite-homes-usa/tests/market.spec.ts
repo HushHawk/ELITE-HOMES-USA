@@ -5,7 +5,7 @@ import { join } from 'node:path';
 const fixture = join(process.cwd(), 'public', 'images', 'family.webp');
 const film = join(process.cwd(), 'public', 'videos', 'home-film.mp4');
 
-test('seller photos stay private until approved, buyers submit cash offers, and the owner closes intake', async ({ page, browser, baseURL }) => {
+test('seller photos stay private until approved, buyers send offers, and the owner closes intake', async ({ page, browser, baseURL }) => {
   const street = '27 Review Lane ' + randomUUID().slice(0,8);
   await page.goto('/sell');
   await page.getByLabel('Street address').fill(street);
@@ -29,7 +29,7 @@ test('seller photos stay private until approved, buyers submit cash offers, and 
   expect((await visitor.request.get('/api/admin/market')).status()).toBe(401);
   await page.goto('/admin');
   await page.getByLabel('Owner access secret').fill(process.env.ELITE_TEST_SECRET!);
-  await page.getByRole('button', { name: 'Sign In', exact: true }).click();
+  await page.getByRole('button', { name: 'Sign In to Dashboard', exact: true }).click();
   const summary = page.locator('summary').filter({ hasText: street });
   await summary.click();
   const seller = page.locator('.market-record[open]');
@@ -59,12 +59,12 @@ test('seller photos stay private until approved, buyers submit cash offers, and 
   await buyer.getByRole('button', { name: /Enlarge/ }).click();
   await expect(buyer.getByRole('dialog', { name: 'Property photos' })).toBeVisible();
   await buyer.keyboard.press('Escape');
-  await buyer.getByLabel('Your cash offer (USD)').fill('242000');
+  await buyer.getByLabel('Your offer (USD)').fill('242000');
   await buyer.getByLabel('Full name').fill('Example Buyer');
   await buyer.getByLabel('Email', { exact: true }).fill('buyer@example.com');
   await buyer.getByLabel('Phone').fill('9045550123');
   await buyer.getByLabel('Preferred closing timeline').fill('Within 30 days');
-  await buyer.getByRole('button', { name: 'Send Cash Offer' }).click();
+  await buyer.getByRole('button', { name: 'Send Offer' }).click();
   await expect(buyer.getByRole('heading', { name: 'Sample submission saved.' })).toBeVisible();
 
   await page.reload();
@@ -102,7 +102,7 @@ test('owner publishes and removes website media, replaces the hero film and mode
   await expect(page.getByText(title)).toHaveCount(0);
   await page.goto('/admin');
   await page.getByLabel('Owner access secret').fill(process.env.ELITE_TEST_SECRET!);
-  await page.getByRole('button', { name: 'Sign In', exact: true }).click();
+  await page.getByRole('button', { name: 'Sign In to Dashboard', exact: true }).click();
   await page.getByRole('button', { name: 'Reviews', exact: true }).click();
   const record = page.locator('summary').filter({ hasText: title });
   await record.click();

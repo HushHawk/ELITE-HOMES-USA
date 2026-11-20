@@ -744,7 +744,7 @@ function ContentEditor({ dashboard, write, announce }: { dashboard: Dashboard; w
                   <div className="admin-pillar-preview-card">
                     <span className="pillar-num">01</span>
                     <strong>Fast Cash Offers</strong>
-                    <p>Receive an offer within 24 hours.</p>
+                    <p>An in-person or video visit, then a walk-through.</p>
                   </div>
                   <div className="admin-pillar-preview-card">
                     <span className="pillar-num">02</span>
@@ -1231,7 +1231,7 @@ export function MarketAdmin() {
           <div className="admin-page-hero">
             <h1 className="admin-page-title">Owner dashboard</h1>
             <p className="admin-page-subtitle">
-              Executive control center for luxury acquisitions, seller submissions, buyer cash offers, and public showcase assets.
+              Executive control center for luxury acquisitions, seller submissions, buyer offers, and public showcase assets.
             </p>
           </div>
 
@@ -1272,7 +1272,7 @@ export function MarketAdmin() {
               <div className="admin-financial-section">
                 <div className="admin-section-header">
                   <h2>Portfolio & Financial Overview</h2>
-                  <p>Real-time valuation of marketplace inventory and buyer cash offers</p>
+                  <p>Real-time valuation of marketplace inventory and buyer offers</p>
                 </div>
                 <div className="financial-kpi-grid">
                   <div className="financial-kpi-card">
@@ -1428,7 +1428,7 @@ export function MarketAdmin() {
                     </button>
                   </div>
                   {(!dashboard?.offers || dashboard.offers.length === 0) ? (
-                    <p className="admin-empty-note">No buyer cash offers recorded.</p>
+                    <p className="admin-empty-note">No buyer offers recorded.</p>
                   ) : (
                     <div className="admin-recent-list">
                       {dashboard.offers.slice(0, 4).map(o => {
@@ -1655,7 +1655,7 @@ export function MarketAdmin() {
                         value={offerSort}
                         onChange={e => setOfferSort(e.target.value as any)}
                         className="sort-select"
-                        aria-label="Sort cash offers"
+                        aria-label="Sort offers"
                       >
                         <option value="newest">Newest Offers</option>
                         <option value="highest">Highest Amount</option>

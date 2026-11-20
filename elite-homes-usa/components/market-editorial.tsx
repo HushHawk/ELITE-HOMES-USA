@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, ArrowUpRight, BedDouble, Bath, Box, MapPin } from 'lucide-react';
+import { ArrowUpRight, BedDouble, Bath, Box, MapPin } from 'lucide-react';
 import { EditorialImage, Eyebrow } from './editorial';
 import type { PublicListing } from '@/lib/market-schema';
 
@@ -9,8 +9,8 @@ export function MarketCover({ kind }: { kind: 'sell' | 'buy' }) {
     <div className="shell portal-cover-grid">
       <div className="portal-cover-copy"><Eyebrow>{seller ? 'Seller portal' : 'Buyer portal'}</Eyebrow>
         <h1>{seller ? 'Show us' : 'Find your'}<br/><em>{seller ? 'your property.' : 'next property.'}</em></h1>
-        <p>{seller ? 'Share the details and photos privately with Elite Homes USA. We’ll review your submission and contact you to talk through the next steps.' : 'Explore properties and projects approved by Elite Homes USA. See the details and send a cash offer directly to our team.'}</p>
-        <a href={seller ? '#submit-property' : '#properties'} className="btn gold">{seller ? 'Start Your Submission' : 'Browse Properties'} <ArrowRight size={17}/></a>
+        <p>{seller ? 'Share the details and photos privately with Elite Homes USA. We’ll review your submission, arrange a visit or video walkthrough, and talk through the next steps together.' : 'Explore properties and projects approved by Elite Homes USA. See the details and send an offer directly to our team.'}</p>
+        <a href={seller ? '#submit-property' : '#properties'} className="btn gold">{seller ? 'Start Your Submission' : 'Browse Properties'}</a>
         <Link className="text-link" href={seller ? '/buy' : '/sell'}>{seller ? 'Explore the buyer portal' : 'Looking to sell?'} <ArrowUpRight size={15}/></Link>
       </div>
       <figure className="portal-cover-photo"><EditorialImage name={seller ? 'interior' : 'villa'} alt="" eager sizes="(max-width: 760px) 100vw, 53vw"/><figcaption>Illustrative architecture</figcaption></figure>

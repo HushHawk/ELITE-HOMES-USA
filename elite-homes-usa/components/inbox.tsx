@@ -88,7 +88,7 @@ export function SignIn() {
 
     <button className="btn gold admin-submit-btn" disabled={busy}>
       <span>{busy ? 'Signing in…' : 'Sign In to Dashboard'}</span>
-      <ArrowRight size={16}/>
+     
     </button>
 
     <div className="admin-credentials-card">
@@ -131,8 +131,8 @@ export function SignOut() {
   </div>;
 }
 
-const inboxNames = { offer: 'Cash offers', contact: 'Contact', newsletter: 'Newsletter' };
-const fieldNames: Record<string,string> = { propertyType: 'Property type', consentVersion: 'Consent version', consentAt: 'Consent recorded at', preferred: 'Preferred contact', utm: 'Campaign attribution', zip: 'ZIP code' };
+const inboxNames = { offer: 'Home requests', contact: 'Contact', newsletter: 'Newsletter' };
+const fieldNames: Record<string,string> = { propertyType: 'Property type', consentVersion: 'Consent version', consentAt: 'Consent recorded at', preferred: 'Preferred contact', utm: 'Campaign attribution', zip: 'ZIP code', viewing: 'How we’ll view the home', visitWindow: 'Preferred visit times' };
 const formatDate = (value: string) => new Date(value).toLocaleString();
 
 function Record({ row, onSaved }: { row: InboxRow; onSaved: () => void }) {

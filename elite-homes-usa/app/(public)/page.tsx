@@ -13,7 +13,7 @@ export default async function Home() {
   const [{content}, reviews] = await Promise.all([siteContent(), publishedReviews()]);
   return <>
     <Hero settings={content}/>
-    <section className="quick-intake" aria-label="Start a cash offer request">
+    <section className="quick-intake" aria-label="Tell us about your home">
       <div className="shell">
         <QuickCashOfferForm />
       </div>
@@ -21,11 +21,11 @@ export default async function Home() {
     <TrustBar/>
     <section className="section warm marketplace-entry"><div className="shell"><div className="section-heading"><Eyebrow>Buy and sell</Eyebrow><h2>Where are you <em>headed?</em></h2></div>
       <div className="market-paths"><Link href="/sell"><EditorialImage name="interior" alt=""/><div><h3>Sell a property</h3><p>Send your property photos and details to our team for private review.</p><span>Open the seller portal <ArrowUpRight size={17}/></span></div></Link>
-      <Link href="/buy"><EditorialImage name="villa" alt=""/><div><h3>Buy a property</h3><p>Browse approved listings and send a cash offer on a property that fits.</p><span>Open the buyer portal <ArrowUpRight size={17}/></span></div></Link></div>
+      <Link href="/buy"><EditorialImage name="villa" alt=""/><div><h3>Buy a property</h3><p>Browse approved listings and send us an offer on a property that fits.</p><span>Open the buyer portal <ArrowUpRight size={17}/></span></div></Link></div>
     </div></section>
     <section className="section light">
       <div className="shell intro-grid">
-        <div data-reveal><Eyebrow>Home selling, simplified</Eyebrow><h2>{content.introductionTitle || <>People first.<br/><em>Property second.</em></>}</h2><p>{content.introduction || 'Every home sale starts with a reason. At Elite Homes USA, we start by listening to yours. Our Jacksonville team helps homeowners explore a direct cash sale with clear terms and room to decide.'}</p><Link className="text-link" href="/about">Meet Darren Richardson <ArrowUpRight size={17}/></Link></div>
+        <div data-reveal><Eyebrow>Home selling, simplified</Eyebrow><h2>{content.introductionTitle || <>People first.<br/><em>Property second.</em></>}</h2><p>{content.introduction || 'Every home sale starts with a reason. At Elite Homes USA, we start by listening to yours. Our Jacksonville team helps homeowners explore a direct sale with clear terms and room to decide.'}</p><Link className="text-link" href="/about">Meet Darren Richardson <ArrowUpRight size={17}/></Link></div>
         <div data-reveal><EditorialImage name="interior" alt="Neutral living room with warm wood and soft seating" className="intro-image"/><span className="image-label">Illustrative interior</span></div>
       </div>
     </section>
@@ -34,7 +34,7 @@ export default async function Home() {
         <div data-reveal>
           <Eyebrow>Why Elite Homes USA?</Eyebrow>
           <h2>Why clients continue<br/><em>to choose us.</em></h2>
-          <p className="benefit-intro-lead">At Elite Homes USA, we pride ourselves on offering a seamless, stress-free solution for homeowners who need to sell fast.</p>
+          <p className="benefit-intro-lead">At Elite Homes USA, we pride ourselves on offering a seamless, stress-free experience for homeowners who want a smoother way to sell.</p>
           <EditorialImage name="kitchen" alt="Contemporary kitchen with stone counters" className="benefit-photo"/>
         </div>
         <Benefits/>

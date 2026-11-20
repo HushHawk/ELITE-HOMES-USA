@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, ArrowUpRight, Clock, Mail, MapPin, Phone, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowRight, Clock, Mail, MapPin, Phone, ShieldCheck, Sparkles } from 'lucide-react';
 import { business, navigation, steps } from '@/lib/content';
 import { Brand } from './chrome';
 import { SimpleForm } from './forms';
@@ -14,8 +14,8 @@ export function Eyebrow({ children }: { children: React.ReactNode }) {
   return <span className="eyebrow section-label"><i/>{children}</span>;
 }
 
-export function OfferLink({ children = 'Get My Cash Offer' }: { children?: React.ReactNode }) {
-  return <Link href="/get-offer" className="btn gold">{children}<ArrowUpRight size={18}/></Link>;
+export function OfferLink({ children = 'Start a Conversation' }: { children?: React.ReactNode }) {
+  return <Link href="/get-offer" className="btn gold">{children}</Link>;
 }
 
 export function PageHero({ title, accent, image, kicker, description }: { title: string; accent?: string; image: string; kicker: string; description: string }) {
@@ -35,7 +35,7 @@ export function Process({ showRouteLink = true }: { showRouteLink?: boolean }) {
     <div className="shell process-spread">
       <div className="section-heading process-copy" data-reveal>
         <Eyebrow>How it works</Eyebrow><h2>A clear path<br/><em>to closing.</em></h2>
-        <p>Talk us through the property. If it qualifies, you can look over the written cash offer and choose whether to move forward.</p>
+        <p>Tell us about your home. We’ll view it in person, or through your photos and video, and after a walk-through we’ll prepare an offer for you to review at your own pace.</p>
         <div className="section-action"><OfferLink/>{showRouteLink && <Link className="text-link" href="/how-it-works">Explore the process <ArrowRight size={15}/></Link>}</div>
       </div>
       <ol className="process-grid" data-reveal>{steps.map(({ title, detail }, i) => <li key={title}><span className="step-number">0{i + 1}</span><div><h3>{title}</h3><p>{detail}</p></div></li>)}</ol>
@@ -60,7 +60,7 @@ export function Footer({ preview }: { preview: boolean }) {
         <div className="footer-brand-col">
           <Brand />
           <p className="footer-brand-bio">
-            A direct, transparent, and stress-free alternative to traditional real estate transactions. We purchase properties as-is across Jacksonville and Northeast Florida with zero commissions, no repairs, and fast cash closings.
+            A direct, transparent, and stress-free alternative to traditional real estate transactions. We purchase properties as-is across Jacksonville and Northeast Florida with no agent commissions, no repairs, and closing dates that fit your plans.
           </p>
           <div className="footer-contact-list">
             <a href="tel:+19049906760" className="footer-contact-link">
@@ -89,7 +89,7 @@ export function Footer({ preview }: { preview: boolean }) {
         {/* Column 2: Selling & Buying Solutions */}
         <nav className="footer-nav-col" aria-label="Selling and buying navigation">
           <h2>Selling Solutions</h2>
-          <Link href="/get-offer">Request Cash Offer</Link>
+          <Link href="/get-offer">Tell Us About Your Home</Link>
           <Link href="/sell">Sell Your Property</Link>
           <Link href="/buy">Browse Homes for Sale</Link>
           <Link href="/how-it-works">How it works</Link>
@@ -129,15 +129,15 @@ export function Footer({ preview }: { preview: boolean }) {
       <div className="shell footer-guarantee-strip">
         <div className="guarantee-pill">
           <ShieldCheck size={16} aria-hidden="true" />
-          <span>Florida Licensed Cash Buyer</span>
+          <span>Local Jacksonville Home Buyer</span>
         </div>
         <div className="guarantee-pill">
           <Sparkles size={16} aria-hidden="true" />
-          <span>Zero Commissions or Closing Costs</span>
+          <span>No Agent Commissions</span>
         </div>
         <div className="guarantee-pill">
           <Clock size={16} aria-hidden="true" />
-          <span>Cash Offers Delivered in 24 Hours</span>
+          <span>Offers After a Walk-Through</span>
         </div>
       </div>
 

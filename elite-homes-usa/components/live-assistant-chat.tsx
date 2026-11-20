@@ -14,7 +14,7 @@ type Message = {
 };
 
 const SUGGESTED_QUESTIONS = [
-  'How fast can I get a cash offer?',
+  'How does the process work?',
   'Do I need to make repairs first?',
   'How flexible is the closing date?',
   'Are there any fees or commissions?',
@@ -26,27 +26,27 @@ function getKnowledgeResponse(query: string): { text: string; showLeadForm?: boo
 
   if (q.includes('offer') || q.includes('cash') || q.includes('how fast') || q.includes('sell my') || q.includes('quote') || q.includes('worth')) {
     return {
-      text: 'We deliver a fair, transparent written cash offer within 24 hours of receiving your address and property details. There are zero obligations and no high-pressure negotiations. Would you like to share your address so Darren Richardson can prepare your offer?',
+      text: 'Here’s how it works: we view your property in person, or start with photos and video from you, and after a walk-through we prepare an offer for you to consider. There’s no pressure at any point. Would you like to share your address so Darren Richardson can reach out?',
       showLeadForm: true,
     };
   }
 
   if (q.includes('repair') || q.includes('condition') || q.includes('as-is') || q.includes('fix') || q.includes('damage') || q.includes('roof')) {
     return {
-      text: 'You do NOT need to make any repairs or upgrades! Elite Homes USA purchases homes strictly as-is in any condition—whether it needs minor cosmetic touch-ups, a new roof, or major structural repairs. Skip the contractors and cleaning; we take care of everything.',
+      text: 'You don’t need to make repairs or upgrades first. Whether the home needs small touch-ups or larger repairs, we’re happy to take a look during our walk-through and talk it through together.',
       showLeadForm: true,
     };
   }
 
   if (q.includes('fee') || q.includes('commission') || q.includes('cost') || q.includes('hidden') || q.includes('charge')) {
     return {
-      text: 'Our process is 100% transparent with ZERO hidden fees! Unlike listing through a traditional real estate agent, you pay no 6% agent commissions, and we cover standard closing costs. The amount in our cash offer is the exact amount you walk away with.',
+      text: 'We aim to be fully transparent. There are no agent commissions when you sell directly to us, and we’ll explain any closing costs and provide the terms in writing so you know what to expect.',
     };
   }
 
   if (q.includes('close') || q.includes('timeline') || q.includes('schedule') || q.includes('fast') || q.includes('days')) {
     return {
-      text: 'We work entirely on your schedule! If you need to sell quickly, we can close in as little as 7 days. If you need 30 to 60 days to plan your move, pack, or find your next home, we adjust the closing date to fit your comfort.',
+      text: 'We work around your schedule. Some homeowners prefer a quicker timeline and others want a month or two to plan their move. We’ll find a closing date that feels comfortable for you.',
     };
   }
 
@@ -58,12 +58,12 @@ function getKnowledgeResponse(query: string): { text: string; showLeadForm?: boo
 
   if (q.includes('darren') || q.includes('contact') || q.includes('call') || q.includes('phone') || q.includes('speak') || q.includes('number')) {
     return {
-      text: `You can reach Darren Richardson directly at ${business.phone} (Mon – Sat: 8:00 AM – 7:00 PM EST) or email us at ${business.email}. We are always happy to talk through your situation with zero pressure.`,
+      text: `You can reach Darren Richardson directly at ${business.phone} (Mon – Sat: 8:00 AM – 7:00 PM EST) or email us at ${business.email}. We’re always happy to talk through your situation, with no pressure.`,
     };
   }
 
   return {
-    text: 'At Elite Homes USA, our mission is to provide homeowners with a reliable, fast, and stress-free alternative to traditional real estate transactions. Would you like to request a 24-hour cash offer for your Jacksonville property, or ask about our as-is process?',
+    text: 'At Elite Homes USA, our mission is to give homeowners a reliable, caring and stress-free alternative to traditional real estate transactions. Would you like to tell us about your Jacksonville property, or ask about our process?',
     showLeadForm: true,
   };
 }
@@ -149,7 +149,7 @@ export function LiveAssistantChat() {
           {
             id: 'lead-success-' + Date.now(),
             sender: 'assistant',
-            text: `Thank you, ${leadValues.name}! We received your request for ${leadValues.address}. Darren Richardson and our team are reviewing the neighborhood sales and will reach out to ${leadValues.phone} with your 24-hour written cash offer.`,
+            text: `Thank you, ${leadValues.name}! We received your request for ${leadValues.address}. Darren Richardson and our team will reach out to ${leadValues.phone} to say hello and arrange a time to see the property, in person or through your photos and video.`,
             timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
           },
         ]);
@@ -249,9 +249,9 @@ export function LiveAssistantChat() {
                   <div className="live-option-text">
                     <div className="live-option-badge-row">
                       <strong>AI Real Estate Assistant</strong>
-                      <span className="live-badge-instant">Instant</span>
+                      <span className="live-badge-instant">Quick</span>
                     </div>
-                    <p>Instant answers on cash offers, closing timelines, and as-is home sales.</p>
+                    <p>Friendly answers about our process, closing timelines and as-is home sales.</p>
                   </div>
                   <ChevronRight size={18} className="live-option-arrow" />
                 </button>
@@ -271,7 +271,7 @@ export function LiveAssistantChat() {
                   <ChevronRight size={18} className="live-option-arrow" />
                 </a>
 
-                {/* Option 3: Request Cash Offer */}
+                {/* Option 3: Tell Us About Your Home */}
                 <Link
                   href="/get-offer"
                   className="live-option-card"
@@ -281,8 +281,8 @@ export function LiveAssistantChat() {
                     <FileText size={20} />
                   </div>
                   <div className="live-option-text">
-                    <strong>Request 24-Hr Cash Offer</strong>
-                    <p>Enter your address for a no-obligation, as-is written cash offer.</p>
+                    <strong>Tell Us About Your Home</strong>
+                    <p>Share your address and we’ll reach out to arrange a visit or video look.</p>
                   </div>
                   <ChevronRight size={18} className="live-option-arrow" />
                 </Link>
@@ -305,7 +305,7 @@ export function LiveAssistantChat() {
               </div>
 
               <div className="live-options-footer">
-                <span>📍 Jacksonville & Northeast Florida · Licensed Cash Buyer</span>
+                <span>📍 Jacksonville & Northeast Florida · Local Home Buyers</span>
               </div>
             </div>
           )}
@@ -340,7 +340,7 @@ export function LiveAssistantChat() {
                         <div className="live-chat-lead-card">
                           <div className="live-chat-lead-head">
                             <Sparkles size={14} />
-                            <strong>Request 24-Hr Cash Offer</strong>
+                            <strong>Tell Us About Your Home</strong>
                           </div>
                           <form onSubmit={handleLeadSubmit} className="live-chat-lead-form">
                             <input
@@ -365,7 +365,7 @@ export function LiveAssistantChat() {
                               onChange={e => setLeadValues(v => ({ ...v, phone: e.target.value }))}
                             />
                             <button type="submit" className="live-chat-lead-btn" disabled={leadBusy}>
-                              <span>{leadBusy ? 'Submitting…' : 'Submit for Cash Offer'}</span>
+                              <span>{leadBusy ? 'Submitting…' : 'Send to Our Team'}</span>
                               <ArrowRight size={14} />
                             </button>
                           </form>

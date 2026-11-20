@@ -51,7 +51,7 @@ export default async function AdminPage() {
                 <span className="admin-brand-kicker">Jacksonville, Florida</span>
                 <h1>Private Portfolio &amp; Operations Console</h1>
                 <p>
-                  Direct administrative access for Darren Richardson and the Elite Homes USA acquisitions team to evaluate seller dossiers, manage cash offers, curate published reviews, and update active inventory.
+                  Direct administrative access for Darren Richardson and the Elite Homes USA acquisitions team to evaluate seller dossiers, manage offers, curate published reviews, and update active inventory.
                 </p>
               </div>
 

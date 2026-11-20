@@ -2,9 +2,9 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, ArrowRight, ArrowUpRight, Check, CheckCircle2, LockKeyhole } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Check, CheckCircle2, LockKeyhole } from 'lucide-react';
 import { useEffect, useRef, useState, type FormEvent } from 'react';
-import { conditions, contactMethods, newsletterDisclosure, occupancies, offerSteps, propertyTypes, timelines } from '@/lib/schema';
+import { conditions, contactMethods, viewingMethods, newsletterDisclosure, occupancies, offerSteps, propertyTypes, timelines } from '@/lib/schema';
 
 type Field = { name: string; label: string; type?: string; options?: readonly string[]; placeholder?: string; wide?: boolean; optional?: boolean; auto?: string; max?: number };
 type Values = Record<string, string>;
@@ -23,6 +23,8 @@ const offerFields: Field[][] = [
     { name: 'bedrooms', label: 'Bedrooms', optional: true, max: 2 },
     { name: 'bathrooms', label: 'Bathrooms', optional: true, max: 4 },
     { name: 'timeline', label: 'When would you like to sell?', options: timelines, wide: true },
+    { name: 'viewing', label: 'How would you like us to see the home?', options: viewingMethods, optional: true, wide: true },
+    { name: 'visitWindow', label: 'Days or times that work for a visit', placeholder: 'e.g. weekday afternoons', optional: true, wide: true, max: 120 },
     { name: 'notes', label: 'Anything else we should know?', type: 'textarea', optional: true, wide: true, max: 1600 },
   ],
   [
@@ -132,7 +134,7 @@ export function OfferWizard({ preview, type = '', source = 'website' }: { previe
     }
   }
 
-  if (result.success && result.reference) return <div className="form-panel result-panel" role="status"><Check size={34}/><h2 ref={success} tabIndex={-1}>{result.preview ? 'Test request saved.' : 'Your request is in.'}</h2><p>{result.preview ? 'This preview saved your test request. Do not use it to request a real offer.' : 'Our team will review your details and follow up using your preferred contact method.'}</p><p className="reference">Reference {result.reference}</p><Link href="/thank-you" className="text-link">View receipt <ArrowRight size={17}/></Link></div>;
+  if (result.success && result.reference) return <div className="form-panel result-panel" role="status"><Check size={34}/><h2 ref={success} tabIndex={-1}>{result.preview ? 'Test request saved.' : 'Your request is in.'}</h2><p>{result.preview ? 'This preview saved your test request. Please don’t use it for a real property.' : 'Our team will review your details and follow up using your preferred contact method.'}</p><p className="reference">Reference {result.reference}</p><Link href="/thank-you" className="text-link">View receipt <ArrowRight size={17}/></Link></div>;
 
   return <div className="form-panel">
     {preview && <p className="preview-notice">Preview mode. Use sample information only.</p>}
@@ -147,8 +149,8 @@ export function OfferWizard({ preview, type = '', source = 'website' }: { previe
       <label className="honey" aria-hidden="true">Leave this empty<input tabIndex={-1} autoComplete="off" value={website} onChange={event => setWebsite(event.target.value)}/></label>
       {result.error && <p className="form-error" role="alert">{result.error}</p>}
       <div className="wizard-actions">
-        {step > 0 && <button className="btn back-btn" type="button" disabled={busy} onClick={() => go(step - 1)}><ArrowLeft size={17}/> Back</button>}
-        <button className="btn gold" type="submit" disabled={busy}>{busy ? 'Saving…' : step === 3 ? 'Submit Request' : 'Continue'} <ArrowRight size={17}/></button>
+        {step > 0 && <button className="btn back-btn" type="button" disabled={busy} onClick={() => go(step - 1)}> Back</button>}
+        <button className="btn gold" type="submit" disabled={busy}>{busy ? 'Saving…' : step === 3 ? 'Submit Request' : 'Continue'}</button>
       </div>
       <p className="form-policy"><LockKeyhole size={14}/> <span>See our <Link href="/privacypolicy">Privacy Policy</Link> and <Link href="/terms-of-use">Terms</Link>.</span></p>
     </form>
@@ -176,7 +178,7 @@ export function SimpleForm({ kind, preview }: { kind: 'contact' | 'newsletter'; 
     {kind === 'newsletter' ? <label className="check-field"><input type="checkbox" required checked={consent} onChange={event => setConsent(event.target.checked)}/><span>{newsletterDisclosure} {preview && 'Preview mode.'}</span></label>
       : <p className="form-policy"><LockKeyhole size={14}/> <span>See our <Link href="/privacypolicy">Privacy Policy</Link>.</span></p>}
     {result.error && <p className="form-error" role="alert">{result.error}</p>}
-    <button className="btn gold compact" type="submit" disabled={busy}>{busy ? 'Saving…' : kind === 'contact' ? 'Send My Question' : 'Subscribe'} <ArrowRight size={16}/></button>
+    <button className="btn gold compact" type="submit" disabled={busy}>{busy ? 'Saving…' : kind === 'contact' ? 'Send My Question' : 'Subscribe'}</button>
   </form>;
 }
 
@@ -188,7 +190,7 @@ export function Receipt() {
       if (stored) queueMicrotask(() => setReceipt(JSON.parse(stored)));
     } catch { /* The inline confirmation remains available if storage is disabled. */ }
   }, []);
-  return <div className="receipt">{receipt?.reference ? <div><h1>{receipt.preview ? 'Test request saved.' : 'Request received.'}</h1><p className="reference">Reference {receipt.reference}</p></div> : <div><h1>Cash offer requests</h1><p>Start a request to receive a submission reference.</p></div>}<Link href="/get-offer" className="text-link">Go to the offer form <ArrowRight size={17}/></Link></div>;
+  return <div className="receipt">{receipt?.reference ? <div><h1>{receipt.preview ? 'Test request saved.' : 'Request received.'}</h1><p className="reference">Reference {receipt.reference}</p></div> : <div><h1>Home requests</h1><p>Tell us about your home to receive a reference number.</p></div>}<Link href="/get-offer" className="text-link">Go to the form <ArrowRight size={17}/></Link></div>;
 }
 
 export function Unsubscribe() {
@@ -217,13 +219,13 @@ export function AddressStarter() {
   }
   return <form className="address-starter" onSubmit={begin}>
     <label className="field" htmlFor="start-address">Property street address</label>
-    <div><input id="start-address" name="street" placeholder="Enter your street address" autoComplete="street-address" required maxLength={180}/><button className="btn gold" type="submit">Start My Request <ArrowUpRight size={17}/></button></div>
+    <div><input id="start-address" name="street" placeholder="Enter your street address" autoComplete="street-address" required maxLength={180}/><button className="btn gold" type="submit">Start the Conversation</button></div>
   </form>;
 }
 
 export function QuickCashOfferForm({ className }: { className?: string }) {
   const [values, setValues] = useState({ name: '', address: '', phone: '', email: '' });
-  const [smsConsent, setSmsConsent] = useState(true);
+  const [smsConsent, setSmsConsent] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState<{ reference?: string; preview?: boolean } | null>(null);
@@ -241,7 +243,7 @@ export function QuickCashOfferForm({ className }: { className?: string }) {
           address: values.address,
           phone: values.phone,
           email: values.email || undefined,
-          notes: 'Submitted via Quick Cash Offer banner form',
+          notes: 'Submitted via home page introduction form',
         }),
       });
       const data = await response.json();
@@ -258,18 +260,18 @@ export function QuickCashOfferForm({ className }: { className?: string }) {
     return (
       <div className={'quick-offer-success-card ' + (className || '')} role="status">
         <CheckCircle2 size={44} className="gold-icon" />
-        <h3>Cash Offer Request Received!</h3>
+        <h3>Thank you. We’ve received your note.</h3>
         <p>
-          Thank you, <strong>{values.name}</strong>. Darren Richardson and the Elite Homes USA acquisitions team have received your property details for <strong>{values.address}</strong>.
+          Thank you, <strong>{values.name}</strong>. Darren Richardson and the Elite Homes USA acquisitions team have received your details for <strong>{values.address}</strong>.
         </p>
         <div className="receipt-ref-box">
           <small>Submission Reference</small>
           <strong>{success.reference || 'EH-' + Math.random().toString(36).substring(2, 9).toUpperCase()}</strong>
         </div>
-        <p className="guarantee-note">We will review the property and reach out to you at {values.phone} within 24 hours.</p>
+        <p className="guarantee-note">We’ll reach out to you at {values.phone} to say hello and find a time to view the property, in person or through your photos and video.</p>
         <Link href="/get-offer" className="btn compact gold">
-          <span>Need to upload photos or condition details? Complete full dossier</span>
-          <ArrowRight size={14} />
+          <span>Want to add photos or details about the home? Share them here</span>
+         
         </Link>
       </div>
     );
@@ -278,21 +280,21 @@ export function QuickCashOfferForm({ className }: { className?: string }) {
   return (
     <div className={'quick-cash-offer-card ' + (className || '')}>
       <div className="quick-offer-head">
-        <span className="quick-offer-badge">FAST & FAIR 24-HOUR CASH OFFERS</span>
-        <h2>Need To Sell Your House?<br className="quick-offer-title-br" /> <em>Get A Cash Offer</em></h2>
-        <p className="quick-offer-sub">Enter your address to receive a fair, no-obligation home offer within 24 hours.</p>
+        <span className="quick-offer-badge">FRIENDLY, LOCAL & UNHURRIED</span>
+        <h2>Thinking About Selling?<br className="quick-offer-title-br" /> <em>Let’s Talk It Over</em></h2>
+        <p className="quick-offer-sub">Tell us about your home and we’ll reach out. We view every property in person, or through your photos and video, and prepare an offer after a walk-through.</p>
         <div className="quick-offer-benefits">
           <div className="quick-offer-benefit-item">
             <Check size={16} className="gold-icon" />
-            <span>Cash offer in 24 hours</span>
+            <span>We view every home in person or by video</span>
           </div>
           <div className="quick-offer-benefit-item">
             <Check size={16} className="gold-icon" />
-            <span>Sell as-is — no repairs required</span>
+            <span>Sell as-is, no repairs required</span>
           </div>
           <div className="quick-offer-benefit-item">
             <Check size={16} className="gold-icon" />
-            <span>Zero commissions, fees, or closing costs</span>
+            <span>An offer only after a walk-through</span>
           </div>
         </div>
       </div>
@@ -365,8 +367,8 @@ export function QuickCashOfferForm({ className }: { className?: string }) {
         {error && <p className="form-error" role="alert">{error}</p>}
 
         <button type="submit" className="btn hero-primary quick-offer-submit-btn" disabled={busy}>
-          <span>{busy ? 'Preparing Your Cash Offer…' : 'Explore My Options'}</span>
-          <ArrowRight size={17} />
+          <span>{busy ? 'Sending…' : 'Say Hello'}</span>
+         
         </button>
       </form>
     </div>

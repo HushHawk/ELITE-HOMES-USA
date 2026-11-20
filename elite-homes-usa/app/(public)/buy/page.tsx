@@ -8,7 +8,7 @@ import { publicListings } from '@/lib/market-store';
 import { moneyLabel, marketPropertyTypes } from '@/lib/market-schema';
 
 export const dynamic = 'force-dynamic';
-export const metadata: Metadata = { title: 'Buyer Portal', description: 'Browse approved properties and submit a cash offer to Elite Homes USA.' };
+export const metadata: Metadata = { title: 'Buyer Portal', description: 'Browse approved properties and send an offer to Elite Homes USA.' };
 
 export default async function BuyPage({ searchParams }: { searchParams: Promise<{ q?: string; type?: string }> }) {
   const params = await searchParams;

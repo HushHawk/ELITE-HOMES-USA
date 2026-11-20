@@ -7,9 +7,9 @@ const email = `review-${unique}@example.com`;
 
 test('carousel controls, film, property modal, FAQ and mobile navigation', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Sell your home.');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('talk about');
   await page.getByRole('button', { name: 'Next slide' }).click();
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Sell it as-is.');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('see it first');
   await page.keyboard.press('ArrowRight');
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Make your move.');
   await expect.poll(() => page.locator('video').evaluate(video => (video as HTMLVideoElement).readyState)).toBeGreaterThan(1);
@@ -21,7 +21,7 @@ test('carousel controls, film, property modal, FAQ and mobile navigation', async
   await expect(page.getByRole('dialog', { name: 'Single-family homes' })).not.toBeVisible();
   await expect(page.getByRole('button', { name: 'Single-family homes' })).toBeFocused();
   await page.getByText('Do I need to make repairs first?').click();
-  await expect(page.getByText('You can ask for an offer with the home as it is.')).toBeVisible();
+  await expect(page.getByText('No. Tell us about any repairs or updates the home needs')).toBeVisible();
   await page.getByRole('button', { name: 'Traditional listing' }).click();
   await expect(page.getByText('Repairs, cleaning or staging may be recommended.')).toBeVisible();
   await page.setViewportSize({ width: 390, height: 844 });
@@ -60,7 +60,7 @@ test('complete a real offer, view the receipt and update it from the owner inbox
   expect((await page.request.get('/api/admin/records')).status()).toBe(401);
   await page.goto('/admin');
   await page.getByLabel('Owner access secret').fill(process.env.ELITE_TEST_SECRET!);
-  await page.getByRole('button', { name: 'Sign In', exact: true }).click();
+  await page.getByRole('button', { name: 'Sign In to Dashboard', exact: true }).click();
   await page.getByRole('button', { name: 'General inquiries' }).click();
   await page.locator(".admin-record summary").filter({ hasText: `14 Test Lane ${unique}` }).click();
   const record = page.locator('.admin-record[open]');
@@ -74,7 +74,7 @@ test('complete a real offer, view the receipt and update it from the owner inbox
   await expect(record.getByLabel('Status')).toHaveValue('Reviewing');
   await expect(record.getByText('Verified test inquiry.')).toBeVisible();
   await page.getByRole('button', { name: 'Sign Out' }).click();
-  await expect(page.getByRole('button', { name: 'Sign In', exact: true })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Sign In to Dashboard', exact: true })).toBeVisible();
 });
 
 test('contact, consent, deduplication and unsubscribe', async ({ page, request, baseURL }) => {

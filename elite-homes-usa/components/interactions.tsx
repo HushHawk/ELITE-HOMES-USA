@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, CalendarDays, CheckCircle2, CircleCheck, House, MapPin, Pause, Play, Plus, Quote, Star, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUpRight, CalendarDays, CheckCircle2, CircleCheck, House, MapPin, Pause, Play, Plus, Quote, Star, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { benefits, comparison, faqs, properties, sellerReviews, services, slides as originalSlides } from '@/lib/content';
 
@@ -57,7 +57,7 @@ export function Hero({ settings }: { settings: SiteContent }) {
     return () => preference.removeEventListener('change', syncMotion);
   }, [slide.video]);
 
-  return <section className="hero hero-editorial hero-fullbleed" aria-roledescription="carousel" aria-label="Cash home buying"
+  return <section className="hero hero-editorial hero-fullbleed" aria-roledescription="carousel" aria-label="Welcome to Elite Homes USA"
     onKeyDown={e => { if (e.target instanceof HTMLButtonElement && ['ArrowLeft', 'ArrowRight'].includes(e.key)) { e.preventDefault(); go(index + (e.key === 'ArrowRight' ? 1 : -1)); } }}>
     <figure className="hero-figure hero-fullbleed-figure"
       onMouseEnter={() => setIsPaused(true)}
@@ -83,8 +83,8 @@ export function Hero({ settings }: { settings: SiteContent }) {
               <p>{settings.heroCopy || slide.detail}</p>
             </div>
             <div className="hero-actions">
-              <Link className="btn hero-primary" href="/get-offer?from=home">Get My Cash Offer <ArrowUpRight size={18}/></Link>
-              <a className="btn hero-process" href="#process">How it works <ArrowDown size={15}/></a>
+              <Link className="btn hero-primary" href="/get-offer?from=home">Start a Conversation</Link>
+              <a className="btn hero-process" href="#process">How it works</a>
             </div>
           </div>
         </div>
@@ -102,7 +102,7 @@ export function Hero({ settings }: { settings: SiteContent }) {
 
 export function TrustBar() {
   return <section className="trust-bar" id="selling" aria-label="Benefits"><div className="shell">
-    {[[House, 'Sell as-is', 'Skip repairs and showings'], [CircleCheck, 'No obligation', 'Review the offer at your pace'], [CalendarDays, 'Flexible closing', 'Agree on a timeline that fits']].map(([Icon, title, copy]) => {
+    {[[House, 'We visit first', 'In person or by your photos and video'], [CircleCheck, 'No pressure', 'An offer only after a walk-through'], [CalendarDays, 'Your timeline', 'Close when it feels right']].map(([Icon, title, copy]) => {
       const TrustIcon = Icon as typeof House;
       return <div className="trust-item" key={String(title)}><TrustIcon size={24} strokeWidth={1.3}/><div><strong>{String(title)}</strong><span>{String(copy)}</span></div></div>;
     })}
@@ -138,7 +138,7 @@ export function Gallery() {
       <div className="property-dialog-inner">
         <button className="icon-btn dialog-close" aria-label="Close property details" autoFocus onClick={() => dialog.current?.close()}><X size={20}/></button>
         <div className="dialog-image"><Image src={'/images/' + item.image + '.webp'} alt="" fill sizes="560px"/></div>
-        <div className="dialog-content"><h2 id="property-title">{item.title}</h2><p>{item.detail}</p><Link className="btn gold" href={'/get-offer?from=property&type=' + encodeURIComponent(item.title)} onClick={() => dialog.current?.close()}>Request an Offer <ArrowUpRight size={17}/></Link></div>
+        <div className="dialog-content"><h2 id="property-title">{item.title}</h2><p>{item.detail}</p><Link className="btn gold" href={'/get-offer?from=property&type=' + encodeURIComponent(item.title)} onClick={() => dialog.current?.close()}>Request an Offer</Link></div>
       </div>
     </dialog>
   </>;
@@ -149,7 +149,7 @@ export function Compare() {
   return <section className="compare-panel">
     <div className="segmented" aria-label="Sale approach">
       <button type="button" aria-pressed={!right} onClick={() => setRight(false)}>Traditional listing</button>
-      <button type="button" aria-pressed={right} onClick={() => setRight(true)}>Direct cash sale</button>
+      <button type="button" aria-pressed={right} onClick={() => setRight(true)}>Direct sale</button>
     </div>
     <dl key={String(right)}>{comparison.map(([title, traditional, direct]) => <div key={title}><dt>{title}</dt><dd>{right ? direct : traditional}</dd></div>)}</dl>
   </section>;

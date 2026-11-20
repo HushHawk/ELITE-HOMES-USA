@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowRight, Check, ImagePlus, LockKeyhole, X } from 'lucide-react';
+import { Check, ImagePlus, LockKeyhole, X } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { MAX_PHOTOS, marketPropertyTypes, moneyLabel } from '@/lib/market-schema';
@@ -85,7 +85,7 @@ function FormNotice({ preview }: { preview: boolean }) {
 }
 
 function Receipt({ kind, result }: { kind: Kind; result: Submitted }) {
-  return <div className="form-panel result-panel" role="status"><Check size={34}/><h2>{result.preview ? 'Sample submission saved.' : kind === 'sell' ? 'Property sent for review.' : kind === 'offer' ? 'Cash offer received.' : 'Review received.'}</h2>
+  return <div className="form-panel result-panel" role="status"><Check size={34}/><h2>{result.preview ? 'Sample submission saved.' : kind === 'sell' ? 'Property sent for review.' : kind === 'offer' ? 'Offer received.' : 'Review received.'}</h2>
     <p>{kind === 'sell' ? 'The team can review your private submission and reach you by phone or email.' : kind === 'offer' ? 'The team can contact you to discuss the offer. Any transaction requires a separate agreement.' : 'The team can review your feedback before publishing it.'}</p>
     <p className="reference">Reference {result.reference}</p>
   </div>;
@@ -145,7 +145,7 @@ export function SellerForm({ preview }: { preview: boolean }) {
       <label className="portal-check"><input name="photoPermission" type="checkbox" required/> <span>I have permission to share these photos and property details with Elite Homes USA for review.</span></label>
     </fieldset>
     {error && <p className="form-error" role="alert">{error}</p>}
-    <button className="btn gold" type="submit" disabled={busy || preparing}>{busy ? 'Uploading…' : 'Send Property for Review'} <ArrowRight size={17}/></button>
+    <button className="btn gold" type="submit" disabled={busy || preparing}>{busy ? 'Uploading…' : 'Send Property for Review'}</button>
     <p className="form-policy"><LockKeyhole size={14}/> <span>Your contact details and original submission are private. See our <Link href="/privacypolicy">Privacy Policy</Link>.</span></p>
   </form>;
 }
@@ -158,17 +158,17 @@ export function BuyerForm({ listing, asking, preview }: { listing: string; askin
     const data = new FormData(event.currentTarget);
     void submit({ ...Object.fromEntries(['name','phone','email','website','timeline','terms'].map(key => [key, textValue(data, key)])), listing, amount: numberValue(data, 'amount') });
   }}>
-    <h2>Make a cash offer</h2><FormNotice preview={preview}/>
+    <h2>Send an offer</h2><FormNotice preview={preview}/>
     {asking !== null && <p className="asking-note">Asking price {moneyLabel(asking)}</p>}
     <fieldset disabled={busy}><div className="form-grid">
-      <MarketField label="Your cash offer (USD)" wide><input name="amount" type="number" min={1} max={100000000} required/></MarketField>
+      <MarketField label="Your offer (USD)" wide><input name="amount" type="number" min={1} max={100000000} required/></MarketField>
       <ContactFields/>
       <MarketField label="Preferred closing timeline" wide><input name="timeline" maxLength={100} placeholder="For example, within 30 days"/></MarketField>
       <MarketField label="Conditions or questions" wide><textarea name="terms" rows={3} maxLength={1800}/></MarketField>
     </div></fieldset>
     <p className="form-policy">The owner will review your offer and may follow up directly using the contact information you submit.</p>
     {error && <p className="form-error" role="alert">{error}</p>}
-    <button className="btn gold" disabled={busy}>{busy ? 'Sending…' : 'Send Cash Offer'} <ArrowRight size={17}/></button>
+    <button className="btn gold" disabled={busy}>{busy ? 'Sending…' : 'Send Offer'}</button>
   </form>;
 }
 
@@ -188,6 +188,6 @@ export function ReviewForm({ preview }: { preview: boolean }) {
       <MarketField label="Your review" wide><textarea name="body" rows={4} maxLength={1500} required/></MarketField>
     </div><label className="portal-check"><input name="permission" type="checkbox" required/> <span>Elite Homes USA may publish my display name and review.</span></label></fieldset>
     {error && <p className="form-error" role="alert">{error}</p>}
-    <button className="btn gold" disabled={busy}>{busy ? 'Sending…' : 'Submit for Review'} <ArrowRight size={17}/></button>
+    <button className="btn gold" disabled={busy}>{busy ? 'Sending…' : 'Submit for Review'}</button>
   </form>;
 }

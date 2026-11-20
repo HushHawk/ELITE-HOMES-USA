@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, ArrowUpRight, CheckCircle2, Clock, Mail, MapPin, Phone, ShieldCheck, Sparkles, Video } from 'lucide-react';
+import { ArrowUpRight, CheckCircle2, Clock, Mail, MapPin, Phone, ShieldCheck, Sparkles, Video } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { EditorialImage, Eyebrow, FinalCTA, OfferLink, PageHero, Process } from '@/components/editorial';
 import { FAQ, ReviewThemes } from '@/components/interactions';
@@ -15,17 +15,17 @@ import { isPreview } from '@/lib/store';
 
 const pages = {
   about: { title: 'People first.', accent: 'Property second.', image: 'jacksonville', kicker: 'About', description: 'Meet the Jacksonville team behind a more personal approach to selling your home.' },
-  services: { title: 'A simpler way', accent: 'to sell.', image: 'villa', kicker: 'Services', description: 'Explore the services that can make a direct sale feel more manageable, from an as-is review to a flexible closing.' },
+  services: { title: 'A simpler way', accent: 'to sell.', image: 'villa', kicker: 'Services', description: 'Explore the ways we can make a direct sale feel more manageable, from a friendly walk-through to a flexible closing.' },
   reviews: { title: 'In their', accent: 'experience.', image: 'interior', kicker: 'Reviews', description: 'Read what sellers shared about their experiences with Elite Homes USA.' },
   contact: { title: 'Let’s start a', accent: 'conversation.', image: 'entry', kicker: 'Contact', description: 'Tell our Jacksonville team what you’re considering and ask any questions about selling your home.' },
-  'how-it-works': { title: 'Know what', accent: 'comes next.', image: 'film-poster', kicker: 'How it works', description: 'From telling us about your home to reviewing the offer, you’ll have time to understand every step.' },
-  faq: { title: 'Good to', accent: 'know.', image: 'kitchen', kicker: 'FAQs', description: 'Answers to common questions about selling as-is, closing and requesting a cash offer.' },
+  'how-it-works': { title: 'Know what', accent: 'comes next.', image: 'film-poster', kicker: 'How it works', description: 'From telling us about your home to a walk-through and reviewing your offer, you’ll have time to understand every step.' },
+  faq: { title: 'Good to', accent: 'know.', image: 'kitchen', kicker: 'FAQs', description: 'Answers to common questions about our process, selling as-is and closing.' },
 } as const;
 
 const titles: Record<string, string> = {
-  about: 'About Darren Richardson', services: 'Cash Home Buying Services', reviews: 'Seller Reviews', contact: 'Contact',
-  'how-it-works': 'How It Works', 'get-offer': 'Request a Cash Offer', faq: 'Frequently Asked Questions',
-  privacypolicy: 'Privacy Policy', 'terms-of-use': 'Terms of Use', 'thank-you': 'Offer Receipt', unsubscribe: 'Manage Email Subscription',
+  about: 'About Darren Richardson', services: 'Home Buying Services', reviews: 'Seller Reviews', contact: 'Contact',
+  'how-it-works': 'How It Works', 'get-offer': 'Tell Us About Your Home', faq: 'Frequently Asked Questions',
+  privacypolicy: 'Privacy Policy', 'terms-of-use': 'Terms of Use', 'thank-you': 'Request Receipt', unsubscribe: 'Manage Email Subscription',
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ section: string }> }): Promise<Metadata> {
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ section: 
   if (!titles[section]) return {};
   return {
     title: titles[section],
-    description: pages[section as keyof typeof pages]?.description || (section === 'get-offer' ? 'Tell Elite Homes USA about your Jacksonville-area property to request a no-obligation cash offer.' : undefined),
+    description: pages[section as keyof typeof pages]?.description || (section === 'get-offer' ? 'Tell Elite Homes USA about your Jacksonville-area property and we’ll set up a time to see it.' : undefined),
     alternates: process.env.ELITE_SITE_URL ? { canonical: '/' + section } : undefined,
     ...(['thank-you', 'unsubscribe'].includes(section) && { robots: { index: false, follow: false } }),
   };
@@ -106,15 +106,15 @@ function Story() {
           <Eyebrow>Our Mission</Eyebrow>
           <h2>Committed to Simplifying the<br /><em>Home-Selling Process</em></h2>
           <p className="mission-statement">
-            Our mission is to provide homeowners with a reliable, fast, and stress-free alternative to traditional real estate transactions. We aim to eliminate the complexities and expenses that come with selling a home, allowing our clients to move forward with ease and confidence.
+            Our mission is to give homeowners a reliable, caring and stress-free alternative to traditional real estate transactions. We take the time to see each home and understand each family, so you can move forward with ease and confidence.
           </p>
         </div>
 
         <div className="about-mission-grid" data-reveal>
           <div className="mission-card">
             <div className="mission-card-icon"><Sparkles size={22} aria-hidden="true" /></div>
-            <h3>Reliable & Fast</h3>
-            <p>Direct cash purchase process that bypasses bank approvals, appraisal delays, and uncertain timelines.</p>
+            <h3>Reliable & Caring</h3>
+            <p>A direct purchase process with clear terms, so you aren’t waiting on bank approvals or appraisals.</p>
           </div>
           <div className="mission-card">
             <div className="mission-card-icon"><ShieldCheck size={22} aria-hidden="true" /></div>
@@ -123,13 +123,13 @@ function Story() {
           </div>
           <div className="mission-card">
             <div className="mission-card-icon"><CheckCircle2 size={22} aria-hidden="true" /></div>
-            <h3>Zero Hidden Expenses</h3>
-            <p>No agent commissions, no surprise deductions, and no hidden closing costs eat into your net proceeds.</p>
+            <h3>Clear, Honest Terms</h3>
+            <p>No agent commissions, and every cost explained up front and provided in writing, so there are no surprises.</p>
           </div>
         </div>
 
         <div className="about-mission-action" data-reveal>
-          <OfferLink>Request Your Cash Offer</OfferLink>
+          <OfferLink>Start a Conversation</OfferLink>
         </div>
       </div>
     </section>
@@ -141,7 +141,7 @@ function Story() {
           <Eyebrow>Why We’re Different</Eyebrow>
           <h2>What Sets Us <em>Apart</em></h2>
           <p>
-            At Elite Homes USA, we believe in putting the needs of homeowners first. Unlike other buyers, we focus on providing a personal, tailored experience that works for you. Our quick cash offers, commitment to transparency, and deep knowledge of the local market allow us to create solutions that are both fast and fair.
+            At Elite Homes USA, we believe in putting the needs of homeowners first. Unlike other buyers, we focus on providing a personal, tailored experience that works for you. Our personal walk-throughs, commitment to transparency and deep knowledge of the local market allow us to create solutions that are both fair and thoughtful.
           </p>
         </div>
 
@@ -149,8 +149,8 @@ function Story() {
           <div className="diff-card">
             <div className="diff-card-icon"><Clock size={24} aria-hidden="true" /></div>
             <div className="diff-card-content">
-              <h3>Fast Cash Offers</h3>
-              <p>Receive an offer within 24 hours.</p>
+              <h3>We See It First</h3>
+              <p>An in-person visit or your photos and video, then a walk-through.</p>
             </div>
           </div>
 
@@ -158,15 +158,15 @@ function Story() {
             <div className="diff-card-icon"><ShieldCheck size={24} aria-hidden="true" /></div>
             <div className="diff-card-content">
               <h3>No Repairs Needed</h3>
-              <p>We buy your home as-is.</p>
+              <p>Share your home as it is today.</p>
             </div>
           </div>
 
           <div className="diff-card">
             <div className="diff-card-icon"><CheckCircle2 size={24} aria-hidden="true" /></div>
             <div className="diff-card-content">
-              <h3>No Hidden Fees</h3>
-              <p>No commissions or closing costs.</p>
+              <h3>Clear Terms</h3>
+              <p>Clear terms, provided in writing.</p>
             </div>
           </div>
 
@@ -192,7 +192,7 @@ function ServiceList() {
             <Eyebrow>Tailored Real Estate Services</Eyebrow>
             <h2>Expert Home Buying Solutions<br/><em>That Work for You</em></h2>
             <p className="service-intro-lead">
-              At Elite Homes USA, we offer a range of home-buying services tailored to your specific needs. Whether you’re looking for a fast cash offer, need flexibility in closing, or want to sell your home without repairs, we’ve got you covered. Explore our services below to see how we can help you sell your home quickly and effortlessly.
+              At Elite Homes USA, we offer a range of home-buying services tailored to your specific needs. Whether you’d like a walk-through before anything else, need flexibility in closing, or want to sell your home without repairs, we’re here to help. Explore our services below to see how we can support you.
             </p>
           </div>
         </div>
@@ -219,7 +219,7 @@ function ServiceList() {
                   </ul>
                 </div>
                 <div className="service-feature-action">
-                  <OfferLink>Get My Cash Offer</OfferLink>
+                  <OfferLink>Start a Conversation</OfferLink>
                 </div>
               </div>
             </article>
@@ -230,15 +230,15 @@ function ServiceList() {
       <section className="section dark service-ready-section">
         <div className="shell">
           <div className="service-ready-card" data-reveal>
-            <Eyebrow>Ready to Get Started?</Eyebrow>
-            <h2>No matter your situation,<br/><em>we have the solution.</em></h2>
+            <Eyebrow>Whenever you’re ready</Eyebrow>
+            <h2>No matter your situation,<br/><em>we’re glad to listen.</em></h2>
             <p>
-              Contact Elite Homes USA today to receive your cash offer and get started on a fast, hassle-free home-selling experience.
+              Reach out to Elite Homes USA whenever you’re ready. We’ll arrange a visit or look at your photos and video, and prepare an offer after a walk-through.
             </p>
             <div className="service-ready-actions">
               <Link href="/get-offer" className="btn gold">
-                <span>Receive Your Cash Offer</span>
-                <ArrowRight size={17} aria-hidden="true" />
+                <span>Tell Us About Your Home</span>
+               
               </Link>
               <a href={'tel:+1' + business.phone.replace(/\D/g, '').slice(-10)} className="btn outline">
                 <Phone size={15} aria-hidden="true" />
@@ -266,7 +266,7 @@ function Contact() {
           <Eyebrow>Direct Jacksonville Office</Eyebrow>
           <h2>We’re here <em>to listen.</em></h2>
           <p className="contact-mission-note">
-            Whether you are considering a direct cash sale, exploring options for an inherited or as-is property, or seeking honest guidance on your Jacksonville home, we are here with straightforward answers and zero pressure.
+            Whether you are considering a direct sale, exploring options for an inherited or as-is property, or seeking honest guidance on your Jacksonville home, we are here with straightforward answers and no pressure.
           </p>
 
           <div className="contact-methods">
@@ -284,7 +284,7 @@ function Contact() {
               <div>
                 <small>Email us</small>
                 <strong>{business.email}</strong>
-                <span className="contact-subline">Replies within 24 hours</span>
+                <span className="contact-subline">We’ll reply as soon as we can</span>
               </div>
             </a>
 
@@ -315,11 +315,11 @@ function Contact() {
             </div>
             <div className="contact-badge-item">
               <Clock size={16} />
-              <span>Fast 24hr Response</span>
+              <span>Friendly, Prompt Replies</span>
             </div>
             <div className="contact-badge-item">
               <Sparkles size={16} />
-              <span>Zero Obligation</span>
+              <span>No Pressure</span>
             </div>
           </div>
 
@@ -341,7 +341,7 @@ function Legal({ section }: { section: string }) {
   const privacy = section === 'privacypolicy';
   return <section className="section utility-page light"><div className="shell utility-inner"><Eyebrow>{business.name}</Eyebrow><h1>{privacy ? 'Privacy Policy' : 'Terms of Use'}</h1>
     <p>The current {privacy ? 'privacy policy' : 'terms of use'} is published on the original Elite Homes USA website. The updated document for this website is pending approval.</p>
-    <a className="btn gold" href={business.source + '/' + section}>Read the Current {privacy ? 'Privacy Policy' : 'Terms'} <ArrowUpRight size={18}/></a>
+    <a className="btn gold" href={business.source + '/' + section}>Read the Current {privacy ? 'Privacy Policy' : 'Terms'}</a>
     <p>{privacy ? 'Effective June 29, 2026.' : 'Effective March 1, 2024. Last updated June 29, 2026.'}</p>
     <p>{privacy ? 'The published policy covers property and contact information, communications and SMS preferences, data sharing, cookies, security and privacy requests.' : 'The published terms cover website use, offer eligibility, limits on estimates and outcomes, communications, liability and Florida governing law.'}</p>
     <p>For policy questions, email <a href={'mailto:' + business.email}>{business.email}</a> or call <a href="tel:+19045155092">{business.legalPhone}</a>, the number shown in the current policy documents.</p>
@@ -360,7 +360,7 @@ export default async function Interior({ params, searchParams }: { params: Promi
       <div className="offer-visual">
         <EditorialImage name="entry" alt="" eager sizes="(max-width: 900px) 100vw, 42vw"/>
         <div className="hero-shade"/>
-        <div><Link className="crumb" href="/">Home / Cash Offer</Link><Eyebrow>Sell on your terms</Eyebrow><h1>Your next move <em>starts here.</em></h1><p>Share a few details so we can review your property and follow up with you.</p><span className="image-label">Illustrative architecture</span></div>
+        <div><Link className="crumb" href="/">Home / Your Home</Link><Eyebrow>Sell on your terms</Eyebrow><h1>Your next move <em>starts here.</em></h1><p>Share a few details so we can say hello, learn about your home and set up a visit or a look at your photos and video. We’ll prepare an offer after a walk-through.</p><span className="image-label">Illustrative architecture</span></div>
       </div>
       <div className="offer-panel"><OfferWizard preview={process.env.ELITE_MODE !== 'live'} type={type} source={source}/></div>
     </section>;

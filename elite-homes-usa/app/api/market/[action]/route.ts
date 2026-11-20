@@ -53,7 +53,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ act
       const { requestId, listing, website, ...details } = parsed.data;
       if (website) return json({ error: 'Please refresh and try again.' }, 400);
       const id = await saveMarketOffer(details, listing, requestId);
-      return id ? success(id) : json({ error: 'This property is no longer accepting cash offers.' }, 409);
+      return id ? success(id) : json({ error: 'This property is no longer accepting offers.' }, 409);
     }
     const parsed = visitorReview.safeParse(body);
     if (!parsed.success) return invalid(parsed.error);
